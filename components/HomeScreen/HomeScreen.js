@@ -13,21 +13,30 @@ export default class Camera extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Text style={[styles.welcomeTexts, styles.first]}>Welcome On this new Watiz App</Text>
-                <Text style={styles.welcomeTexts}>What Would you like to do?</Text>
-                {/* <View style={styles.buttonsContainer}>
-                    <Button
-                        onPress={() =>
-                            navigate('Capture')
-                        }
-                        title="Take a picture"
-                        color="#841584"
-                    />
-                    <Button
-                        title="Access to gallery"
-                        color="#841584"
-                    />
-                </View> */}
+                <View style={styles.textsContainer}>
+                    <Text style={styles.text1}>Welcome On this new Watiz App</Text>
+                    <Text style={styles.text2}>What Would you like to do?</Text>
+                </View>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonsWrapper}>
+                        <Button
+                            onPress={() =>
+                                navigate('Capture')
+                            }
+                            title="Camera"
+                            color='darkorange'
+                        />
+                    </View>
+                    <View style={styles.buttonsWrapper}>
+                        <Button
+                            onPress={() =>
+                                navigate('Gallery')
+                            }
+                            title="Gallery"
+                            color='darkorange'
+                        />
+                    </View>
+                </View>
             </View>
         );
     }

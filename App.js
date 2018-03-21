@@ -16,40 +16,31 @@ import { StackNavigator } from 'react-navigation';
 //Import of Components
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import Camera from './components/Camera/Camera';
+import Gallery from './components/Gallery/Gallery';
 
 export default class App extends Component {
   render() {
-      return (
-        <Camera />
-      );
+     return <RootStack />;
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// const RootStack = StackNavigator(
-//   {
-//     HomeScreen: {
-//       screen: HomeScreen
-//     },
-//     Capture: {
-//       screen: Camera
-//     }
-//   },
-//   {
-//     initialRouteName: 'Capture',
-//     navigationOptions: {
-//       header: null
-//     }
-//   }
-// );
+const RootStack = StackNavigator(
+  {
+    HomeScreen: {
+      screen: HomeScreen
+    },
+    Capture: {
+      screen: Camera
+    },
+    Gallery: {
+      screen: Gallery
+    }
+  },
+  {
+    initialRouteName: 'HomeScreen',
+    navigationOptions: {
+      header: null
+    }
+  }
+);
 

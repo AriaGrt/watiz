@@ -1,21 +1,30 @@
 import {StyleSheet} from 'react-native'
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red',
-        height: '100%'
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    welcomeTexts: {
-        textAlign: 'center'
+    textsContainer: {
+        marginBottom: 10
     },
-    first: {
-        fontSize: 20
+    text1:{
+        fontSize: responsiveFontSize(2.5)
     },
-    second: {
-        paddingTop: 5
+    text2:{
+        textAlign:'center'
     },
     buttonsContainer: {
-       flex: 1,
-       flexDirection: 'row'
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 10
+    },
+    buttonsWrapper: {
+        flex: 1,
+        margin: '5%'
     }
 });

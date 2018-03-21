@@ -3,14 +3,23 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   Dimensions,
-  StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  CameraRoll,
+  PermissionsAndroid
+
 } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
+import { styles } from './styles'
+
 export default class Camera extends Component {
+
+  componentDidMount() {
+    this.requestCameraPermission()
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -37,32 +46,30 @@ export default class Camera extends Component {
   }
 
   takePicture = async function() {
+    const { navigate } = this.props.navigation;
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync(options)
-      console.log(data.uri);
+      CameraRoll.saveToCameraRoll(data.uri)
+        .then(() => {
+          navigate('HomeScreen')
+        })
     }
-  };
+  }
+
+  requestCameraPermission = async function() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          'title': 'Camera Roll',
+          'message': 'Watiz needs your authorization ' +
+                     'so you can save awesome pictures.'
+        }
+      )
+    } catch (err) {
+      console.warn(err)
+    }
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: 'black'
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
-    alignSelf: 'center',
-    margin: 20
-  }
-});
