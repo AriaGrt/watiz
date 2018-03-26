@@ -50,6 +50,7 @@ export default class Gallery extends Component {
             assetType: 'Photos'
         })
             .then(r => this.setState({ images: r.edges }))
+            .then(() => {console.log(this.state)})
     }
 
     requestGalleryPermission = async function () {

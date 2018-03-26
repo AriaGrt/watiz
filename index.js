@@ -1,4 +1,14 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { Navigation } from 'react-native-navigation';
+import App, { registerScreens } from './App';
 
-AppRegistry.registerComponent('watiz2', () => App);
+registerScreens(); 
+
+Navigation.startSingleScreenApp({
+  screen: {
+    screen: 'watiz.HomeScreen', 
+    title: 'HomeScreen', 
+    navigatorStyle: {
+      navBarHidden: true
+    }
+  }
+});

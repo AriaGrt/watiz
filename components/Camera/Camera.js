@@ -46,13 +46,17 @@ export default class Camera extends Component {
   }
 
   takePicture = async function() {
-    const { navigate } = this.props.navigation;
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync(options)
       CameraRoll.saveToCameraRoll(data.uri)
         .then(() => {
-          navigate('HomeScreen')
+          this.props.navigator.push({
+            screen: 'watiz.HomeScreen',
+            navigatorStyle: {
+                navBarHidden: true
+            }
+        })
         })
     }
   }

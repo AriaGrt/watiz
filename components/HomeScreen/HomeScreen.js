@@ -10,7 +10,6 @@ import { styles } from './styles'
 
 export default class Camera extends Component {
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <View style={styles.textsContainer}>
@@ -20,18 +19,28 @@ export default class Camera extends Component {
                 <View style={styles.buttonsContainer}>
                     <View style={styles.buttonsWrapper}>
                         <Button
-                            onPress={() =>
-                                navigate('Capture')
-                            }
+                            onPress={() => {
+                                this.props.navigator.push({
+                                    screen: 'watiz.Camera',
+                                    navigatorStyle: {
+                                        navBarHidden: true
+                                    }
+                                })
+                            }}
                             title="Camera"
                             color='darkorange'
                         />
                     </View>
                     <View style={styles.buttonsWrapper}>
                         <Button
-                            onPress={() =>
-                                navigate('Gallery')
-                            }
+                            onPress={() => {
+                                this.props.navigator.push({
+                                    screen: 'watiz.Gallery',
+                                    navigatorStyle: {
+                                        navBarHidden: true
+                                    }
+                                })
+                            }}
                             title="Gallery"
                             color='darkorange'
                         />
@@ -40,7 +49,6 @@ export default class Camera extends Component {
             </View>
         );
     }
-
 }
 
 
