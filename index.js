@@ -5,8 +5,8 @@ registerScreens();
 
 Navigation.startSingleScreenApp({
   screen: {
-    screen: 'watiz.HomeScreen', 
-    title: 'HomeScreen', 
+    screen: 'watiz.Camera', 
+    title: 'Camera', 
     navigatorStyle: {
       navBarHidden: true
     }

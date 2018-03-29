@@ -1,70 +1,50 @@
-import React, { Component } from 'react'
+'use strict';
+
+import React, { Component } from 'react';
 import {
     View,
     Text,
     CameraRoll,
     ScrollView,
-    TouchableHighlight,
-    Image,
-    Button,
-    PermissionsAndroid
-} from 'react-native'
-
+    TouchableHighlight
+} from 'react-native';
 import { styles } from './styles'
 
-export default class Gallery extends Component {
+export default class Camera extends Component {
 
-    constructor(props) {
+    constructor(props){
         super(props)
-        this.state = {
-            images: []
-        }
-        this.getPhotos()
+        this.state = {}
     }
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <Text style={styles.title}>Your Images</Text>
-                <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <View style={styles.container}>
+                <ScrollView>
                     {
-                        this.state.images.map((image, i) => {
-                            return (
+                        console.log(photos)
+                        this.state.photos.map((photos) => {
+                        return (
+                            <TouchableHighlight>
                                 <Image
-                                    style={styles.image}
-                                    key={i}
-                                    source={{ uri: image.node.image.uri }}
+                                    source={{uri: photos.node.image.uri}}
                                 />
-                            )
+                            </TouchableHighlight>
+                        )
                         })
                     }
                 </ScrollView>
             </View>
-        )
+        );
     }
 
-    getPhotos = async function () {
-        await this.requestGalleryPermission()
+    // Get Photos From Camera Roll
+    async getCameraRoll() {
         CameraRoll.getPhotos({
-            first: 20,
-            assetType: 'Photos'
+            first: 20
         })
-            .then(r => this.setState({ images: r.edges }))
-            .then(() => {console.log(this.state)})
+        .then(r => this.setState({ photos: r.edges }))
     }
+}
 
-    requestGalleryPermission = async function () {
-        try {
-            const granted = await PermissionsAndroid.request(
-                PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-                {
-                    'title': 'Gallery',
-                    'message': 'Watiz needs your authorization ' +
-                        'so you can read awesome pictures.'
-                }
-            )
-        } catch (err) {
-            console.warn(err)
-        }
-    }
-} 
+
