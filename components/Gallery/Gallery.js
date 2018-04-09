@@ -12,7 +12,7 @@ import { styles } from './styles'
 
 export default class Camera extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {}
     }
@@ -22,15 +22,14 @@ export default class Camera extends Component {
             <View style={styles.container}>
                 <ScrollView>
                     {
-                        console.log(photos)
                         this.state.photos.map((photos) => {
-                        return (
-                            <TouchableHighlight>
-                                <Image
-                                    source={{uri: photos.node.image.uri}}
-                                />
-                            </TouchableHighlight>
-                        )
+                            return (
+                                <TouchableHighlight>
+                                    <Image
+                                        source={{ uri: photos.node.image.uri }}
+                                    />
+                                </TouchableHighlight>
+                            )
                         })
                     }
                 </ScrollView>
@@ -43,7 +42,7 @@ export default class Camera extends Component {
         CameraRoll.getPhotos({
             first: 20
         })
-        .then(r => this.setState({ photos: r.edges }))
+            .then(r => this.setState({ photos: r.edges }))
     }
 }
 
