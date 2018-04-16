@@ -11,6 +11,7 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+    
 }
 
 allprojects {
@@ -26,4 +27,12 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
     }
+}
+
+ext {
+    compileSdkVersion           = 26
+    targetSdkVersion            = 26
+    buildToolsVersion           = "26.0.2"
+    googlePlayServicesVersion   = "12.0.1"
+    supportLibVersion           = "27.1.0"
 }
